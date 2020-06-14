@@ -11,7 +11,7 @@ https://www.youtube.com/watch?v=RfIVOX8WG4Q&rel=0
 Sensor --> Arduino --> (Serial) --> Node-Red and Tensorflor model --> Node-Red Dashboard
 
 # Detailed solution  
-We plan to make a compact wearable device that is placed in the chest area, fastened to the body using a strap. The device will be connected to the myResponder application through wifi. The device will contain personal information of the wearer (name and address), gps and two sensors. The first sensor is able to detect when a body is suffering from symptoms of cardiac arrest 10 minutes prior and the second sensor is able to detect when a body falls. When cardiac arrest symptoms are detected by the device, a notification will be released in the myResponder app, informing nearby Community First Responders (CFRs) about a potential cardiac arrest patient and requesting for their aid. Meanwhile, when the device detects a fall, the device will first vibrate and sound an alarm for 20 seconds, in which the wearer has to respond by pressing a button on the device. If no response is given, a notification will then be released in the myResponder app, informing nearby CFRs about the fall incident. 
+We plan to make a compact wearable device that is placed in the chest area, fastened to the body using a strap. The device will be connected to the myResponder application through wifi. The device will contain personal information of the wearer (name and address), GPS and two sensors. The first sensor is able to detect when a body is suffering from symptoms of cardiac arrest 10 minutes prior, which is a significant amount of time compared to cardiac arrest detection (~2 minutes to save the patient), and the second sensor is able to detect when a body falls. When cardiac arrest symptoms are detected by the device, a notification will be released in the myResponder app, informing nearby Community First Responders (CFRs) about a potential cardiac arrest patient and requesting for their aid. Meanwhile, when the device detects a fall, the device will first vibrate and sound an alarm for 20 seconds, in which the wearer has to respond by pressing a button on the device. If no response is given, a notification will then be released in the myResponder app, informing nearby CFRs about the fall incident.
 
 We use ECG recordings dataset from patients suffering from cardiac arrest to train our machine learning model in IBM Watson Machine Learning using AutoAI experiment, which will then be used to detect whether the device wearer’s body is suffering from cardiac arrest symptoms. The model will be used in Node-Red to be fed with ECG data. Our device will also use IBM Watson IoT to connect the device and the myResponder app. 
 
@@ -35,3 +35,7 @@ f. Build the flow.
 g. Deploy and open the dashboard. You will be able to view ECG data and get an alert if falling is detected.  
 
 Dataset source: https://physionet.org/content/sddb/1.0.0/
+
+# IBM Tools Used
+IBM Watson Machine Learning  
+Node-Red  

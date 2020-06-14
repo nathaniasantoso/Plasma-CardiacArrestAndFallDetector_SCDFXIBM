@@ -1,0 +1,166 @@
+[
+    {
+        "id": "99678937.782138",
+        "type": "tab",
+        "label": "Cardiac Arrest and Fall Detection",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ffdb2c36.afefe",
+        "type": "serial in",
+        "z": "99678937.782138",
+        "name": "",
+        "serial": "88633e57.9fd49",
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "9d9f6448.04b9b8"
+            ]
+        ]
+    },
+    {
+        "id": "9d9f6448.04b9b8",
+        "type": "function",
+        "z": "99678937.782138",
+        "name": "Split Data",
+        "func": "var output = msg.payload.split(\"\\t\");\n\nvar message = {payload: output[0]};\nvar heartrate = {payload: parseInt(output[1])};\n\nreturn [message, heartrate]",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "6e010e83.30057"
+            ],
+            [
+                "10cb4328.9ea90d"
+            ]
+        ]
+    },
+    {
+        "id": "6e010e83.30057",
+        "type": "ui_text",
+        "z": "99678937.782138",
+        "group": "b3bc7f00.dd603",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Alert Message",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 690,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "861a6b0f.f50c58",
+        "type": "ui_chart",
+        "z": "99678937.782138",
+        "name": "",
+        "group": "b3bc7f00.dd603",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "ECG",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "10",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 800,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "10cb4328.9ea90d",
+        "type": "switch",
+        "z": "99678937.782138",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "861a6b0f.f50c58"
+            ]
+        ]
+    },
+    {
+        "id": "88633e57.9fd49",
+        "type": "serial-port",
+        "z": "",
+        "serialport": "COM15",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "b3bc7f00.dd603",
+        "type": "ui_group",
+        "z": "",
+        "name": "Data",
+        "tab": "87c23097.66d7f",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "87c23097.66d7f",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
